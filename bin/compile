@@ -65,15 +65,9 @@ else
   fi
 fi
 
-APP_DIR=$BUILD_DIR/app
-RACKET_DIR=$BUILD_DIR/racket
+RACKET_DIR=$BUILD_DIR/.heroku/racket
 
 cd $BUILD_DIR
-
-echo "-----> Moving application into ‘app’ directory"
-
-mkdir -p $APP_DIR
-mv $BUILD_DIR/!(app|Procfile) $APP_DIR/
 
 echo "-----> Building Racket installation"
 echo "     - Downloading prebuilt installer"
@@ -87,8 +81,3 @@ echo "     - Unpacking Racket installation"
 $CACHE_DIR/racket-installer.sh --in-place --dest $RACKET_DIR |& indent
 
 export PATH=$RACKET_DIR/bin:$PATH
-
-echo "-----> Setting up environment"
-
-mkdir .profile.d
-echo 'export PATH=$PATH:$HOME/racket/bin' >> .profile.d/setup_environment.sh

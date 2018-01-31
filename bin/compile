@@ -81,3 +81,8 @@ echo "     - Unpacking Racket installation"
 $CACHE_DIR/racket-installer.sh --in-place --dest $RACKET_DIR |& indent
 
 export PATH=$RACKET_DIR/bin:$PATH
+
+echo "-----> Setting up environment"
+
+mkdir .profile.d
+echo 'export PATH=$PATH:$HOME/.heroku/racket/bin' >> .profile.d/setup_environment.sh
